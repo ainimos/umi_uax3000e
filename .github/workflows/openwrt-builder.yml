@@ -1,39 +1,39 @@
-name: OpenWrt Builder
+名称：OpenWrt 构建器: OpenWrt Builder
 
-on:
-  repository_dispatch:
-    types: [auto-build-firmware]
-  workflow_dispatch:
-    inputs:
-      build_version:
-        description: 'Build Version'
-        required: true
-        default: 'padavanonly/immortalwrt-mt798x-6.6'
-        type: choice
-        options:
-          - padavanonly/immortalwrt-mt798x-6.6
-      lan_ip:
-        description: 'Set LAN IP Address'
-        required: false
-        default: '192.168.1.1'
-      ssh:
-        description: 'Connect to Actions via SSH'
-        required: false
-        default: false
-        type: boolean
+在::
+  仓库派送::
+    类型：[自动构建固件]: [auto-build-firmware]
+  工作流_派送::
+    输入：:
+      版本号::
+        描述：'构建版本': 'Build Version'
+        必填: true: true
+        默认：'padavanonly/immortalwrt-mt798x-6.6': 'padavanonly/immortalwrt-mt798x-6.6'
+        类型：选择: choice
+        选项：:
+          - padavanonly/immortalwrt-mt798x-6.6padavanonly/immortalwrt-mt798x-6.6
+      lan_ip::
+        描述: '设置局域网IP地址': 'Set LAN IP Address'
+        必填： false: false
+        默认值：'192.168.1.1': '192.168.1.1'
+      ssh::
+        描述: '通过 SSH 连接到 Actions': 'Connect to Actions via SSH'
+        必填： false: false
+        默认：false
+        类型：布尔值
 
-env:
+环境:
   REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-6.6
   REPO_BRANCH: openwrt-24.10-6.6
-  SYSTEM_VERSION: immortalwrt 24.10
-  KERNEL_VERSION: 6.6
+  系统版本：immortalwrt 24.10
+  内核版本: 6.6
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: immortalwrt-mt798x-6.6.config
+  配置文件: immortalwrt-mt798x-6.6.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
-  DEFAULT_LAN: 192.168.1.1
-  LAN_IP: ${{ github.event.inputs.lan_ip }}
-  DEFAULT_HOSTNAME: ImmortalWrt
+  默认网络：192.168.1.1
+  局域网IP: ${{ github.event.inputs.lan_ip }}
+  默认主机名: ImmortalWrt
   SSH: ${{ format('{0}', github.event.inputs.ssh) }}
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
@@ -52,7 +52,7 @@ jobs:
 
     steps:
       - name: Optimize Disk
-        uses: easimon/maximize-build-space@v12
+        uses: easimon/maximize-build-space@v10
         with:
           root-reserve-mb: 4096
           remove-dotnet: true
