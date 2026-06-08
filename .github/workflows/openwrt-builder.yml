@@ -1,19 +1,19 @@
-name: OpenWrt Builder
 
-on:
-  repository_dispatch:
-    types: [auto-build-firmware]
-  workflow_dispatch:
-    inputs:
-      build_version:
-        description: 'Build Version'
-        required: true
-        default: 'padavanonly/immortalwrt-mt798x-6.6'
-        type: choice
-        options:
+
+在:
+  仓库派送:
+    类型：[自动构建固件]
+  工作流触发:
+    输入:
+      建设版本:
+        描述：'构建版本'
+        必需： 真
+        默认：'padavanonly/immortalwrt-mt798x-6.6'
+        类型： 选择
+        选项:
           - padavanonly/immortalwrt-mt798x-6.6
-      lan_ip:
-        description: 'Set LAN IP Address'
+      局域网IP:
+        描述: '设置局域网IP地址'
         required: false
         default: '192.168.1.1'
       ssh:
@@ -29,11 +29,11 @@ env:
   KERNEL_VERSION: 6.6
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: immortalwrt-mt798x-6.6.config
-  DIY_P1_SH: diy-part1.sh
-  DIY_P2_SH: diy-part2.sh
-  DEFAULT_LAN: 192.168.1.1
-  LAN_IP: ${{ github.event.inputs.lan_ip }}
-  DEFAULT_HOSTNAME: ImmortalWrt
+  DIY_P1_SH：diy-part1.sh
+  DIY_P2_SH：diy-part2.sh
+  默认语言：192.168.1.1
+  局域网IP：${{ github.event.inputs.lan_ip }}
+  默认主机名：ImmortalWrt
   SSH: ${{ format('{0}', github.event.inputs.ssh) }}
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
@@ -50,15 +50,16 @@ jobs:
     timeout-minutes: 360
 
     steps:
-      - name: Optimize Disk
-        uses: easimon/maximize-build-space@v10
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@main
         with:
-          root-reserve-mb: 4096
-          remove-dotnet: true
-          remove-android: true
-          remove-haskell: true
-          remove-codeql: true
-          remove-docker-images: true
+          tool-cache: false
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: true
+          swap-storage: true
 
       - name: Checkout
         uses: actions/checkout@v4
