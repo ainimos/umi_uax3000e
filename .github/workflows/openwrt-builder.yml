@@ -73,7 +73,6 @@ jobs:
           ./scripts/feeds install -a
           if [ -e ../$CONFIG_FILE ]; then cp ../$CONFIG_FILE .config; fi
           if [ -e ../$DIY_P2_SH ]; then chmod +x ../$DIY_P2_SH; ../$DIY_P2_SH; fi
-          make defconfig
 
       - name: Download
         run: |
