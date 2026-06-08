@@ -9,10 +9,8 @@ on:
         default: '192.168.1.1'
 
 env:
-  # 换成有6.12内核的仓库
-  REPO_URL: https://github.com/hanwckf/immortalwrt-mt798x
-  # 适配UAX3000E的6.12内核分支
-  REPO_BRANCH: openwrt-24.10
+  REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-6.6
+  REPO_BRANCH: openwrt-24.10-6.6
   CONFIG_FILE: immortalwrt-mt798x-6.6.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
