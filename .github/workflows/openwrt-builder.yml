@@ -85,7 +85,7 @@ jobs:
         run: |
           cd openwrt
           make distclean
-          make defconfig
+          
           THREADS=$(nproc)
           if ! make -j$THREADS; then
             echo "Retry with single thread"
